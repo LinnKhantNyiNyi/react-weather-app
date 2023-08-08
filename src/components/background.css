@@ -1,0 +1,30 @@
+.bg-clear {
+  background-image: url(/public/imgs/clear.jpg);
+  background-size: cover;
+}
+
+.bg-cloudy {
+  background-image: url(/public/imgs/cloudy.jpg);
+  background-size: cover;
+}
+
+.bg-snow {
+  background-image: url(/public/imgs/snow.jpg);
+  background-size: cover;
+}
+
+.bg-star {
+  background-image: url(/public/imgs/star.jpg);
+  background-size: cover;
+}
+
+.bg-blue {
+  background-color: #4c66a0;
+}
+
+.bg-black {
+  background-color: black;
+}
+.bg-grey {
+  background-color: #979494;
+}
