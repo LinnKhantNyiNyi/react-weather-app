@@ -1,7 +1,7 @@
 import React from "react";
 import "./background.css";
 
-export default function TempSection() {
+export default function TempSection({ data, city }) {
   return (
     <>
       <div className="d-flex justify-content-between rounded-top bg-clear">
@@ -9,7 +9,8 @@ export default function TempSection() {
         <div className="d-flex justify-content-between p-2 bg-transparent m-2 ">
           <div className="d-flex flex-column align-item-center ms-4">
             <p className="mb-3 text-white font" style={{ fontSize: 50 }}>
-              27°
+              {data[0].Temperature.Metric.Value}°
+              {data[0].Temperature.Metric.Unit}
             </p>
 
             <div className="d-flex justify-content-between">
@@ -33,9 +34,11 @@ export default function TempSection() {
           </div>
           <div className="d-flex flex-column mt-3">
             <ul>
-              <li className="text-white font">Yangon</li>
-              <li className="text-white font">Cloudy</li>
-              <li className="text-white font">Night</li>
+              <li className="text-white font">{city}</li>
+              <li className="text-white font">{data[0].WeatherText}</li>
+              <li className="text-white font">
+                {data[0].IsDayTime ? "Day" : "Night"}
+              </li>
             </ul>
           </div>
         </div>

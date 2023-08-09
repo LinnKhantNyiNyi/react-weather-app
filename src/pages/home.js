@@ -26,9 +26,9 @@ export default function Home() {
       {!!KeyError && <Error />}
       {!!data && (
         <div className="container  p-2 border rounded mt-5 shadow-sm bg-blue">
-          <TempSection />
+          <TempSection data={data} city={City} />
           <Search />
-          <Detail />
+          <Detail data={data} />
         </div>
       )}
     </>
