@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Search() {
+  let [City, setCity] = useState("");
+  let navigate = useNavigate();
+
+  let ClickHandler = () => {
+    navigate("?search=" + City);
+    window.location.reload();
+  };
   return (
     <>
       <div className="bg-transparent p-1">
@@ -11,8 +19,13 @@ export default function Search() {
             placeholder="Search"
             aria-label="Search"
             aria-describedby="search-addon"
+            onChange={(e) => setCity(e.target.value)}
           />
-          <button type="submit" className="btn bg-secondary">
+          <button
+            type="submit"
+            className="btn bg-secondary"
+            onClick={ClickHandler}
+          >
             <img src="/search.svg" alt="" />
           </button>
         </div>

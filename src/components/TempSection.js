@@ -1,7 +1,7 @@
 import React from "react";
 import "./background.css";
 
-export default function TempSection({ data, city }) {
+export default function TempSection({ data, city, search }) {
   return (
     <>
       <div className="d-flex justify-content-between rounded-top bg-clear">
@@ -34,7 +34,7 @@ export default function TempSection({ data, city }) {
           </div>
           <div className="d-flex flex-column mt-3">
             <ul>
-              <li className="text-white font">{city}</li>
+              <li className="text-white font">{search ? search : city}</li>
               <li className="text-white font">{data[0].WeatherText}</li>
               <li className="text-white font">
                 {data[0].IsDayTime ? "Day" : "Night"}

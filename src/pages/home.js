@@ -6,12 +6,18 @@ import Detail from "../components/Detail";
 import useFetchKey from "../hooks/useFetchKey";
 import useFetch from "../hooks/useFetch";
 import Error from "../components/Error";
+import { useLocation } from "react-router-dom";
 
 export default function Home() {
   let [City] = useState("Tokyo");
   let [apikey] = useState("PEoeBDC95vt8YAYz5CZ0G7J7VkhUPDCz");
+  let location = useLocation();
+  let params = new URLSearchParams(location.search);
+  let search = params.get("search");
   let [CityUrl] = useState(
-    `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apikey}&q=${City}`
+    `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apikey}&q=${
+      search ? search : City
+    }`
   );
 
   let { Key, error: KeyError } = useFetchKey(CityUrl);
@@ -26,7 +32,7 @@ export default function Home() {
       {!!KeyError && <Error />}
       {!!data && (
         <div className="container  p-2 border rounded mt-5 shadow-sm bg-blue">
-          <TempSection data={data} city={City} />
+          <TempSection data={data} city={City} search={search} />
           <Search />
           <Detail data={data} />
         </div>
