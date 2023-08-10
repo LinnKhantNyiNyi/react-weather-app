@@ -31,7 +31,17 @@ export default function Home() {
       {!!loading && "loading"}
       {!!KeyError && <Error />}
       {!!data && (
-        <div className="container  p-2 border rounded mt-5 shadow-sm bg-blue">
+        <div
+          className={`container  p-2 border rounded mt-5 shadow-sm ${
+            data[0].WeatherIcon <= 5
+              ? "bg-blue"
+              : data[0].WeatherIcon === 33 || data[0].WeatherIcon === 34
+              ? "bg-black"
+              : data[0].WeatherIcon === 43 || data[0].WeatherIcon === 44
+              ? "bg-light"
+              : "bg-grey"
+          }`}
+        >
           <TempSection data={data} city={City} search={search} />
           <Search />
           <Detail data={data} />

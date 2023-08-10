@@ -4,7 +4,17 @@ import "./background.css";
 export default function TempSection({ data, city, search }) {
   return (
     <>
-      <div className="d-flex justify-content-between rounded-top bg-clear">
+      <div
+        className={`d-flex justify-content-between rounded-top ${
+          data[0].WeatherIcon <= 5
+            ? "bg-clear"
+            : data[0].WeatherIcon === 33 || data[0].WeatherIcon === 34
+            ? "bg-star"
+            : data[0].WeatherIcon === 43 || data[0].WeatherIcon === 44
+            ? "bg-snow"
+            : "bg-cloudy"
+        }`}
+      >
         {/* tempside */}
         <div className="d-flex justify-content-between p-2 bg-transparent m-2 ">
           <div className="d-flex flex-column align-item-center ms-4">
@@ -45,7 +55,7 @@ export default function TempSection({ data, city, search }) {
         {/* iconside */}
         <div className="bg-transparent">
           <img
-            src={`/icons/1.svg`}
+            src={`/icons/${data[0].WeatherIcon}.svg`}
             style={{ width: 150, height: 150 }}
             className="img-fluid"
             alt=""
