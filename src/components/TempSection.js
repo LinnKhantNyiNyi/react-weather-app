@@ -1,7 +1,9 @@
-import React from "react";
 import "./background.css";
+import useUnit from "../hooks/useUnit";
 
 export default function TempSection({ data, city, search }) {
+  let { unit, changeUnit } = useUnit();
+
   return (
     <>
       <div
@@ -18,11 +20,18 @@ export default function TempSection({ data, city, search }) {
         {/* tempside */}
         <div className="d-flex justify-content-between p-2 bg-transparent m-2 ">
           <div className="d-flex flex-column align-item-center ms-4">
-            <p className="mb-3 text-white font" style={{ fontSize: 50 }}>
-              {data[0].Temperature.Metric.Value}°
-              {data[0].Temperature.Metric.Unit}
-            </p>
-
+            {unit === "metric" && (
+              <p className="mb-3 text-white font" style={{ fontSize: 50 }}>
+                {data[0].Temperature.Metric.Value}°
+                {data[0].Temperature.Metric.Unit}
+              </p>
+            )}
+            {unit === "imperial" && (
+              <p className="mb-3 text-white font" style={{ fontSize: 50 }}>
+                {data[0].Temperature.Imperial.Value}°
+                {data[0].Temperature.Imperial.Unit}
+              </p>
+            )}
             <div className="d-flex justify-content-between">
               <div>
                 <p className="text-white font ">Metric</p>
@@ -34,8 +43,10 @@ export default function TempSection({ data, city, search }) {
                   role="switch"
                   id="flexSwitchCheckDefault"
                   style={{ width: 50 }}
+                  onClick={() => changeUnit()}
                 ></input>
               </div>
+              {/* <button onClick={() => changeUnit()}>click</button> */}
 
               <div>
                 <p className="text-white font">Imperial</p>
